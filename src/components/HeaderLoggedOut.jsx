@@ -1,23 +1,24 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 
-const HeaderLoggedOut = ({ setLoggedIn }) => {
+import DispatchContext from "../DispatchContext";
+
+const HeaderLoggedOut = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const appDispatch = useContext(DispatchContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8081/login", {
+      const response = await axios.post("/login", {
         username,
         password,
       });
       if (response.data) {
-        localStorage.setItem("socialMediaAppToken", response.data.token);
-        localStorage.setItem("socialMediaAppUsername", response.data.username);
-        localStorage.setItem("socialMediaAppAvatar", response.data.avatar);
-        setLoggedIn(true);
+        appDispatch({ type: "login", data: response.data });
       } else {
         console.log("Incorret username or password");
       }

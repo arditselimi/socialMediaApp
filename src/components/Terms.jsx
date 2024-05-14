@@ -4,7 +4,7 @@ const Terms = () => {
   return (
     <Container>
       <div className="container m-auto py-6">
-        <h2 className="text-2xl py2">Our Terms & Conditions</h2>
+        <h2 className="text-2xl py2 pb-4">Our Terms & Conditions</h2>
         <p className="text-neutral-600">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
           dolorum labore quisquam vel id dicta fuga! Ducimus, quo. Dolore

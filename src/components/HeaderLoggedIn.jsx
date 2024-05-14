@@ -1,10 +1,15 @@
-const HeaderLoggedIn = ({ setLoggedIn }) => {
-  const handleLogOut = () => {
-    setLoggedIn(false);
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
-    localStorage.removeItem("socialMediaAppToken");
-    localStorage.removeItem("socialMediaAppUsername");
-    localStorage.removeItem("socialMediaAppAvatar");
+import DispatchContext from "../DispatchContext";
+import StateContext from "../StateContext";
+
+const HeaderLoggedIn = () => {
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
+
+  const handleLogOut = () => {
+    appDispatch({ type: "logout" });
   };
 
   return (
@@ -15,20 +20,20 @@ const HeaderLoggedIn = ({ setLoggedIn }) => {
       <span>
         <i className="ri-chat-1-line text-xl cursor-pointer"></i>
       </span>
-      <span>
+      <Link to={`/profile/${appState.user.username}`}>
         <img
-          src={localStorage.getItem("socialMediaAppAvatar")}
+          src={appState.user.avatar}
           alt="profile"
           className="w-8 h-8 rounded-full object-cover inline-block border cursor-pointer"
         />
-      </span>
+      </Link>
       <span>
-        <a
-          href="/"
+        <Link
+          to="/create-post"
           className="bg-red-500 px-3 py-1.5 rounded hover:bg-red-600 cursor-pointer"
         >
           Create Post
-        </a>
+        </Link>
       </span>
       <span>
         <a

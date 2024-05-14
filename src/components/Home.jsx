@@ -1,6 +1,10 @@
 import Page from "./Page";
+import { useContext } from "react";
+import StateContext from "../StateContext";
 
 const Home = () => {
+  const appState = useContext(StateContext);
+
   return (
     <Page title="Home">
       <div className="container m-auto flex flex-col items-center py-12">
@@ -9,8 +13,9 @@ const Home = () => {
         </h2>
 
         <div>
-          <p className="text-neutral-600">
-            Your feed displays the latest posts of the people you follow.
+          <p className="text-neutral-600 text-center">
+            Hello {appState.user.username}, your feed displays the latest posts
+            of the people you follow.
           </p>
         </div>
 
