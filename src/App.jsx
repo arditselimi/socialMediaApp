@@ -12,8 +12,10 @@ import HomeGuest from "./components/HomeGuest";
 import Home from "./components/Home";
 import CreatePost from "./components/CreatePost";
 import ViewSinglePost from "./components/ViewSinglePost";
+import EditPost from "./components/EditPost";
 import Profile from "./components/Profile";
 import About from "./components/About";
+import NotFound from "./components/NotFound";
 import Terms from "./components/Terms";
 import Footer from "./components/Footer";
 
@@ -70,7 +72,9 @@ const App = () => {
             <Route path="/terms" element={<Terms />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/profile/:username/*" element={<Profile />} />
+            <Route path="/edit-post/:id" element={<EditPost />} />
             <Route path="/post/:id" element={<ViewSinglePost />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
           <ToastContainer />

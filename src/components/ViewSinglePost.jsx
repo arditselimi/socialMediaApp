@@ -2,6 +2,8 @@ import Page from "./Page";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Tooltip } from "react-tooltip";
+import { Link } from "react-router-dom";
 
 const ViewSinglePost = () => {
   const [post, setPost] = useState([]);
@@ -37,12 +39,18 @@ const ViewSinglePost = () => {
         <div className="flex justify-between pt-4 mb-4">
           <h2 className="text-3xl text-neutral-800">{post?.title}</h2>
           <div>
-            <span>
+            <Link
+              data-tooltip-content="Edit"
+              data-tooltip-id="edit"
+              to={`/edit-post/${id}`}
+            >
               <i className="ri-edit-box-line text-2xl text-blue-400 cursor-pointer hover:text-blue-700"></i>
+            </Link>
+            <Tooltip id="edit" />
+            <span data-tooltip-content="Delete" data-tooltip-id="delete">
+              <i className="ri-close-line text-2xl text-red-600 cursor-pointer hover:text-red-900"></i>
             </span>
-            <span>
-              <i className="ri-add-line text-2xl text-red-600 cursor-pointer hover:text-red-900"></i>
-            </span>
+            <Tooltip id="delete" />
           </div>
         </div>
 
